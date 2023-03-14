@@ -113,83 +113,117 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
 </figure>
 
   <h2> Why erase concepts from diffusion model? </h2>
-  <p> Large scale image generation models like stable-diffusion have the capability to generate hyper realistic content. Since they mimic the knowledge
-    of the training dataset, they are also capable of generating nudity, mimic particular artistic styles (<a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/">Washington Report on Artists Lawsuit</a>), 
-    generate undesired objects (<a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion">The Verge Report on Getty Images Lawsuit</a>). This could be of a
-    concern to institutions hosting the APIs or releasing their models for research. </p>
- <p>   
-    There are methods to mitigate such content post production or during inference, but are easy to bipass. We propose finetuning the weights for a small 
-      number of iterations using simply the text description of such concepts and erase them permanently from the weights. 
+  <p> Large scale image generation models like Stable Diffusion have the capability to generate
+  realistic content. Since they mimic their vast training data sets, it is not surprising that
+  they are capable of generating nudity, imitating particular artistic styles, or generating
+  other undesired objects.  These capabilities have led to an array of risks and economic
+  impacts: use of the models to create
+  <a href="https://www.washingtonpost.com/technology/2023/02/13/ai-porn-deepfakes-women-consent/"
+    >deepfake porn raises issues of consent and harrassment</a>;
+  their ability to
+  <a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"
+    >effortlessly imitate artistic styles has led artists to sue</a>, concerned about dire
+  economic consequences for their profession</a>; and their tendency to echo
+  <a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"
+     >copyrighted or trademarked symbols indiscriminately</a> has to another lawsuit.
+  Such issues are a serious concern for institutions who wish to release their models.</p>
+  <p>   
+  There are methods to mitigate such content post-production or during inference,
+  but they are easy to bypass. We propose finetuning the weights for a small 
+  number of iterations using simply the text description of such concepts and
+  erase them permanently from the weights. 
   </p>
   
 <h2> How to erase concepts from the model? </h2>
-  <p> We simply use the vast knowledge of the model itself to unlearn a particular concept. Instead of collecting a dataset of images corresponding to the concept
-    that one intends to erase, we propose using the generative capabilities of the pre-trained model. </p>
+  <p>We use the encyclopedic knowledge of the model itself to unlearn a particular concept.
+  Instead of collecting a neew dataset of images corresponding to the concept
+  that one intends to erase, we propose using the generative capabilities of the
+  pre-trained model. </p>
   
   <figure class="center_image" style="margin-top: 30px">
     <img src="images/paper/esd.png" style="width:100%; max-width:800px">
-    <figcaption> The ESD model is fine-tuned with the conditioned and unconditioned 
-      scores obtained from frozen SD model to guide the output away from the concept being erased. 
-      The model learns from it’s own knowledge to steer the diffusion process away from the undesired concept.
+    <figcaption>Our Erased Stable Diffusion (ESD) method fine tunes a model using the
+      conditioned and unconditioned scores obtained from the original frozen Stable Diffusion (SD)
+      model, to guide the output away from the concept being erased. 
     </figcaption>
   </figure>
   
-  From the frozen pre-trained, we query the noise for a given prompt, and train the edited model to guide in the opposite direction using classifier free guidance.
-  We fine-tune the model weights such that the edited model always generates images away from the concept that is erased. 
+  We query the frozen pre-trained model to predict the noise for a given prompt,
+  then we train the edited model to guide it in the opposite direction using the
+  ideas of classifier-free guidance at training time rather than inference.
+  We fine-tune the model weights such that the edited model learns to generate
+  images away from the concept that is erased. 
   </p>
   
 <h2> What weights to edit? </h2>
   <p>
-    Cross attentions act as a gateway for text conditioning in the image generation process. Naturally, these attention heads activate when a certain token 
-    is present in the text prompt. Where as self attentions are active irrrespective of the text conditioning. They attend to the visual aspect of a concept. 
+  Cross attention modules act as a gateway for text conditioning in the image
+  generation process. Naturally, these attention heads activate when a certain
+  set of tokens are present in the text prompt. In contrast, self attentions activate
+  irrrespective of text conditioning, since they attend to the visual aspects a concept. 
   </p>
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/attentions.png" style="width:100%; max-width:800px">
-    <figcaption> Cross attentions activate only when <b><i>"car"</i></b> is present in the prompt. But self attentions are activate in both the cases.
+    <img src="images/paper/attentions.png" style="width:100%; max-width:500px">
+    <figcaption> Cross attentions activate only when <b><i>"car"</i></b> is present
+      in the prompt. But self attentions are activate in both the cases.
     </figcaption>
   </figure>
     
   <p>
-    With this evidence, we propose ESD-x, finetuning cross attention to erase a concept. This has a very narrow effect on the distribution, especially when
-    the concept is mentioned in the prompt. Such finer effect is desirable in case of art erase, where not all artists would want their styles to be erased.
-    ESD-u, finetuning all the unconditional layers (all layers except cross attentions) for a more generalised, unconditional and global erasure effect.
+  Inspired by this observation, we propose ESD-x, applying the erasing method to only
+  fine tuning cross attention parameters while erasing a concept.  That has a very
+  narrow effect on the output distribution, focusing changes on conditions when
+  the concept is explicitly mentioned in the prompt. Such finer effects are desirable
+  in case of artistic style erasure, where some artists may wish to have their styles
+  be preserved while others erased.  We also study ESD-u, which is fine tuning all the
+  unconditional layers (all layers except cross-attentions), which creates a generalised
+  erasure of a concept that does not depend on the presence of specific words in the prompt;
+  this is useful when removing NSFW output in a way that includes situations where NSFW
+  terms are not used in the prompt.
   </p>   
   <figure class="center_image" style="margin-top: 30px">
     <img src="images/paper/ablation.png" style="width:100%; max-width:800px">
-    <figcaption> ESD-x (last column) erases in a narrow, finer scope while keeping the interference (last 3 rows) to minimal. Where as ESD-u (third column) erases in a global fashion.
+    <figcaption> ESD-x (last column) erases a concept narrowly while minimizing interference (last 3 rows), whereas ESD-u (third column) erases a concept broadly.
     </figcaption>
   </figure>
   
- <h3> Artist Style Erasure </h3>
-      <p> With the concern arising from recent lawsuits, artistic style erasure can be of interest for many artists and organizations. Since this is a more
-        sensitive erasure where specific art styles need to be erased while keeping the interference to minimal, we propose ESD-x for this application
+ <h2>Erasing an Artistic Style</h2>
+      <p>We study artistic style erasure; our paper includes a user study where we
+      measure compare the effects of using our method to erase an artistic style
+      with other approaches including negative guidance and Safe Latent Diffusion.
+      We also measure the interference effects of removing one style on other styles.
       </p>
       <figure class="center_image" style="margin-top: 30px">
         <img src="images/paper/artstyle.png" style="width:100%; max-width:800px">
-        <figcaption> Our method erases a style more prominently while keeping the undesired interference to a minimal. 
-          The blue dotted images represent the intended erasure while the off-diagonal images represent undesired interference. 
+        <figcaption> Our method erases a style while minimizing undesired interference
+          on other styles.  The blue dotted images represent the intended erasure
+          while the off-diagonal images represent undesired interference. 
         </figcaption>
       </figure>
   
-  <h3> Nudity Erasure </h3>
-    <p> Since nudity content can be generated without explicitly mentioning the word <i>"nudity"</i>, we propose using ESD-u. Compared the inference 
-      techniques, our method has a much aggresive erasure effect on a dataset that explicitly creates innapropriate content. </p>
+  <h2>Erasing Nudity</h2>
+    <p> Since NSFW content can be generated without explicitly mentioning words
+    such as <i>"nudity"</i> explicitly, we apply ESD-u to fine-tune unconditioned
+    parameters of the model. In our paper we compare our method to both inference-based
+    guidance (Safe Latent Diffusion, SLS), and training-based censorship (Stable Diffusion v2.0
+    and v2.1), and find that our method is able to erase more inappropriate content.
+    </p>
     <figure class="center_image" style="margin-top: 30px">
       <img src="images/paper/nudity.png" style="width:100%; max-width:800px">
-      <figcaption> Our method erases nudity across all the categories more significantly compared to inference techniques (SLD)
-        and models like Stable diffusion V2.0 that is trained on NSFW filtered datasets.
+      <figcaption> Our method erases more nudity across categories compared
+        to inference guidance (SLD) or models like Stable Diffusion V2.0 that are
+        trained on NSFW filtered datasets.
       </figcaption>
     </figure>
       
-  
-  <h3> Object Erasure </h3>
-      <p> Erasing undesired objects can also be done using ESD-u, since the effect requires to be global and not text specific </p>
 
-<h2> Limitations </h2>
-      <p> 
-        For both NSFW erasure and artistic style erasure, we find that our method is more effective than baseline approaches on erasing the targeted visual 
-        concept, but when erasing large concepts such as entire object classes or some particular styles,
-        our method can impose a trade-off between complete erasure of a visual concept and interference with other visual concepts. </p>     
+  <h2>Limitations</h2>
+    <p> 
+    For both NSFW erasure and artistic style erasure, we find that our
+    method is more effective than baseline approaches on erasing the targeted visual 
+    concept, but when erasing large concepts such as entire object classes or
+    some particular styles, our method can impose a trade-off between complete
+    erasure of a visual concept and interference with other visual concepts. </p>     
       <figure class="center_image" style="margin-top: 30px">
         <img src="images/paper/limitations.png" style="width:100%; max-width:800px">
         <figcaption> Cases of incomplete concept erasures and style interference with our method.
