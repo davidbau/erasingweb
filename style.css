@@ -20,20 +20,19 @@ h2 {
 }
 
 .nd-pageheader a, .nd-pageheader a.likelink {
-/*  color: #e4f1fe; */
   color: #3C2013;
 }
 
 .nd-pagefooter {
-  color: white;
   margin-top: 1.5rem;
   padding: 1rem;
+  color: #3C2013;
   text-align: center;
-  background-color: #1D5C2A;
+  background-color: #F4D700;
 }
 
 .nd-pagefooter a {
-  color: #e4f1fe;
+  color: #3C2013;
 }
 
 .nd-pageheader .container {
