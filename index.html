@@ -80,10 +80,30 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="row justify-content-center text-center">
 
 <p>
-Github: <a href="https://github.com/rohitgandikota/erasing">https://github.com/rohitgandikota/erasing</a>
+<a href="https://arxiv.org/pdf/2303.07345.pdf" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.png" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
+<a href="https://github.com/rohitgandikota/erasing" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Github code thumbnail" data-nothumb=""><br>Source Code<br>Github</a>
 </p>
 
-</div>
+<div class="card" style="max-width: 1020px;">
+<div class="card-block">
+<h3>How to erase concepts from diffusion model weights?</h3>
+<p>
+<p>Diffusion models are the recent state-of-the-art image generation models that are capable of generating 
+  high resolution hyper-realistic images. With the advancements in quality, there is a growing concern of safety, privacy and copyrighted content 
+  in diffusion model generated images. From inappropriate content generation to artistic style mimicing, recent works attempt to restrict such content
+  via inference methods or post generation classification restriction. Such methods can be circumvented when users have access to open source weights.
+</p>
+<p>
+In this paper, we propose a model weights fine-tuning to <b>erase concepts from diffusion models using their own knowledge</b>. Given just the text of the concept
+  to be erased, our method can edit the model weights to erase the concept while keeping the inteference with other concepts minimal. This type of fine-tuning
+  has an advantage over inference methods where it is difficult to circumvent even with open-sourced weights while avoiding the expense of retraining the data 
+  on filtered training dataset.
+</p>
+</div><!--card-block-->
+</div><!--card-->
+
+</div><!--row-->
+  
 <div class="row">
 <div class="col">
 
