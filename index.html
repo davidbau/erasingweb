@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Erasing Concepts from Diffusion Models</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+<meta property="og:title" content="Erasing Concepts from Diffusion Models" />
+<meta property="og:description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" /> 
+<meta name="twitter:title" content="Erasing Concepts from Diffusion Models" />
+<meta name="twitter:description" content="Updating thousands of memories in GPT by directly calculating parameter changes." />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+
+<style>
+.relatedthumb {
+  float:left; width: 200px; margin: 3px 10px 7px 0;
+}
+.relatedblock {
+  clear: both;
+  display: inline-block;
+}
+.bold-sc {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+.cite, .citegroup {
+  margin-bottom: 8px;
+}
+:target {
+  background-color: yellow;
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FD12LWN557"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
+</script>
+
+</head>
+<body class="nd-docs">
+<div class="nd-pageheader">
+ <div class="container">
+ <h1 class="lead">
+ <nobr class="widenobr">Erasing Concepts</nobr>
+ from
+ <nobr class="widenobr">Diffusion Models</nobr>
+ </h1>
+<address>
+  <nobr><a href="https://rohitgandikota.github.io/" target="_blank"
+  >Rohit gandikota</a><sup>1</sup>,</nobr>
+  <nobr><a href="https://joaanna.github.io/" target="_blank"
+  >Joanna Materzy&#324;ska</a><sup>2</sup>,</nobr>
+  <nobr><a href="https://github.com/JadenFiotto-Kaufman" target="_blank"
+  >Jaden Fiotto-Kaufman</a><sup>1</sup>,</nobr>
+  <nobr><a href="https://baulab.info/" target="_blank"
+  >David Bau</a><sup>1</sup></nobr>
+ <br>
+  <nobr><sup>1</sup><a href="https://khoury.northeastern.edu/" target="_blank"
+  >Northeastern University</a>,</nobr>
+  <nobr><sup>2</sup><a href="https://www.csail.mit.edu/" target="_blank"
+  >MIT CSAIL</a></nobr>
+</address>
+ </div>
+</div><!-- end nd-pageheader -->
+
+<div class="container">
+<div class="row justify-content-center text-center">
+
+<p>
+Github: <a href="https://github.com/rohitgandikota/erasing">https://github.com/rohitgandikota/erasing</a>
+</p>
+
+</div>
+<div class="row">
+<div class="col">
+
+<h2>How to cite</h2>
+
+<p>The preprint can be cited as follows.
+</p>
+
+<div class="card">
+<h3 class="card-header">bibliography</h3>
+<div class="card-block">
+<p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
+Rohit Gandikota, Joanna Materzy&#324;ska, Jaden Fiotto-Kaufman, David Bau. "<em>Erasing Concepts from Diffusion Models.</em>" arXiv preprint <nobr><a href="https://arxiv.org/abs/xxxx.xxxxx">arXiv:xxx.xxxxxx</a> (2023).</nobr>
+</p>
+</div>
+<h3 class="card-header">bibtex</h3>
+<div class="card-block">
+<pre class="card-text clickselect">
+@article{gandikota2023erasing,
+  title={Erasing Concepts from Diffusion Models},
+  author={Rohit Gandikota and Joanna Materzy\'nska and Jaden Fiotto-Kaufman and David Bau},
+  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  year={2023}
+}
+</pre>
+</div>
+</div>
+</p>
+
+</div>
+</div><!--row -->
+</div> <!-- container -->
+
+<footer class="nd-pagefooter">
+  <div class="row">
+    <div class="col-6 col-md text-center">
+      <a href="https://baulab.info/">About the Bau Lab</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script>
+$(document).on('click', '.clickselect', function(ev) {
+  var range = document.createRange();
+  range.selectNodeContents(this);
+  var sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+});
+</script>
+</html>
+
