@@ -114,10 +114,9 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
 
   <h2> Why erase concepts from diffusion model? </h2>
   <p> Large scale image generation models like stable-diffusion have the capability to generate hyper realistic content. Since they mimic the knowledge
-    of the training dataset, they are also capable of generating nudity, mimic particular artistic styles, generate undesired objects. This could be of a
+    of the training dataset, they are also capable of generating nudity, mimic particular artistic styles (<a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/">Washington Report on Artists Lawsuit</a>), 
+    generate undesired objects (<a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion">The Verge Report on Getty Images Lawsuit</a>). This could be of a
     concern to institutions hosting the APIs or releasing their models for research. </p>
-    <p class="citation"><a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"><img src="images/articles/art_washington.jpeg" alt="washingtonpost-2023">Michael Cavna, "Artists are alarmed by AI - and they're fighting back", Washington Post, Feb 14 2023 </a><br>
-    <p class="citation"><a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"><img src="images/articles/getty_verge.png" alt="verge-2023">James Vincent, "Getty Images sues AI art generator Stable Diffusion in the US for copyright infringement", The Verge, Feb 06 2023 </a><br>
  <p>   
     There are methods to mitigate such content post production or during inference, but are easy to bipass. We propose finetuning the weights for a small 
       number of iterations using simply the text description of such concepts and erase them permanently from the weights. 
