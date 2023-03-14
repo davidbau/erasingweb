@@ -113,7 +113,7 @@ the entire model on a filtered training data set.
 <div class="col">
   
 <figure class="center_image" style="margin-top: 30px">
-  <img src="images/paper/main.png" style="width:100%; max-width:800px">
+  <center><img src="images/paper/main.png" style="width:100%; max-width:800px"></center>
   <figcaption> Our method can be used to erase a wide variety of concepts including nudity, art styles or even objects permanently from the model weights.
   </figcaption>
 </figure>
@@ -147,7 +147,7 @@ the entire model on a filtered training data set.
   pre-trained model. </p>
   
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/esd.png" style="width:100%; max-width:800px">
+    <center><img src="images/paper/esd.png" style="width:100%; max-width:800px"></center>
     <figcaption>Our Erased Stable Diffusion (ESD) method fine tunes a model using the
       conditioned and unconditioned scores obtained from the original frozen Stable Diffusion (SD)
       model, to guide the output away from the concept being erased. 
@@ -169,7 +169,7 @@ the entire model on a filtered training data set.
   irrrespective of text conditioning, since they attend to the visual aspects a concept. 
   </p>
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/attentions.png" style="width:100%; max-width:500px">
+    <center><img src="images/paper/attentions.png" style="width:100%; max-width:500px"></center>
     <figcaption> Cross attentions activate only when <b><i>"car"</i></b> is present
       in the prompt. But self attentions are activate in both the cases.
     </figcaption>
@@ -188,7 +188,7 @@ the entire model on a filtered training data set.
   terms are not used in the prompt.
   </p>   
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/ablation.png" style="width:100%; max-width:800px">
+    <center><img src="images/paper/ablation.png" style="width:100%; max-width:800px"></center>
     <figcaption> ESD-x (last column) erases a concept narrowly while minimizing interference (last 3 rows), whereas ESD-u (third column) erases a concept broadly.
     </figcaption>
   </figure>
@@ -200,7 +200,7 @@ the entire model on a filtered training data set.
       We also measure the interference effects of removing one style on other styles.
       </p>
       <figure class="center_image" style="margin-top: 30px">
-        <img src="images/paper/artstyle.png" style="width:100%; max-width:800px">
+        <center><img src="images/paper/artstyle.png" style="width:100%; max-width:800px"></center>
         <figcaption> Our method erases a style while minimizing undesired interference
           on other styles.  The blue dotted images represent the intended erasure
           while the off-diagonal images represent undesired interference. 
@@ -215,7 +215,7 @@ the entire model on a filtered training data set.
     and v2.1), and find that our method is able to erase more inappropriate content.
     </p>
     <figure class="center_image" style="margin-top: 30px">
-      <img src="images/paper/nudity.png" style="width:100%; max-width:800px">
+      <center><img src="images/paper/nudity.png" style="width:100%; max-width:800px"></center>
       <figcaption> Our method erases more nudity across categories compared
         to inference guidance (SLD) or models like Stable Diffusion V2.0 that are
         trained on NSFW filtered datasets.
@@ -231,7 +231,7 @@ the entire model on a filtered training data set.
     some particular styles, our method can impose a trade-off between complete
     erasure of a visual concept and interference with other visual concepts. </p>     
       <figure class="center_image" style="margin-top: 30px">
-        <img src="images/paper/limitations.png" style="width:100%; max-width:600px">
+        <center><img src="images/paper/limitations.png" style="width:100%; max-width:600px"></center>
         <figcaption> Cases of incomplete concept erasures and style interference with our method.
         </figcaption>
       </figure>
