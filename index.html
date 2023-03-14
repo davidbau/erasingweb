@@ -107,7 +107,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
 <div class="col">
   
 <figure class="center_image" style="margin-top: 30px">
-  <img src="images/paper/main.png" style="width:100%">
+  <img src="images/paper/main.png" style="width:100%; max-width:800px">
   <figcaption> Our method can be used to erase a wide variety of concepts including nudity, art styles or even objects permanently from the model weights.
   </figcaption>
 </figure>
@@ -115,10 +115,10 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
   <h2> Why erase concepts from diffusion model? </h2>
   <p> Large scale image generation models like stable-diffusion have the capability to generate hyper realistic content. Since they mimic the knowledge
     of the training dataset, they are also capable of generating nudity, mimic particular artistic styles, generate undesired objects. This could be of a
-    concern to institutions hosting the APIs or releasing their models for research. 
+    concern to institutions hosting the APIs or releasing their models for research. </p>
     <p class="citation"><a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"><img src="images/articles/art_washington.jpeg" alt="washingtonpost-2023">Michael Cavna, "Artists are alarmed by AI - and they're fighting back", Washington Post, Feb 14 2023 </a><br>
-    <p class="citation"><a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"><img src="images/articles/getty_verge.jpeg" alt="verge-2023">James Vincent, "Getty Images sues AI art generator Stable Diffusion in the US for copyright infringement", The Verge, Feb 06 2023 </a><br>
-    
+    <p class="citation"><a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"><img src="images/articles/getty_verge.png" alt="verge-2023">James Vincent, "Getty Images sues AI art generator Stable Diffusion in the US for copyright infringement", The Verge, Feb 06 2023 </a><br>
+ <p>   
     There are methods to mitigate such content post production or during inference, but are easy to bipass. We propose finetuning the weights for a small 
       number of iterations using simply the text description of such concepts and erase them permanently from the weights. 
   </p>
@@ -128,7 +128,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
     that one intends to erase, we propose using the generative capabilities of the pre-trained model. </p>
   
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/esd.png" style="width:100%">
+    <img src="images/paper/esd.png" style="width:100%; max-width:800px">
     <figcaption> The ESD model is fine-tuned with the conditioned and unconditioned 
       scores obtained from frozen SD model to guide the output away from the concept being erased. 
       The model learns from it’s own knowledge to steer the diffusion process away from the undesired concept.
@@ -145,7 +145,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
     is present in the text prompt. Where as self attentions are active irrrespective of the text conditioning. They attend to the visual aspect of a concept. 
   </p>
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/attentions.png" style="width:100%">
+    <img src="images/paper/attentions.png" style="width:100%; max-width:800px">
     <figcaption> Cross attentions activate only when <b><i>"car"</i></b> is present in the prompt. But self attentions are activate in both the cases.
     </figcaption>
   </figure>
@@ -156,7 +156,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
     ESD-u, finetuning all the unconditional layers (all layers except cross attentions) for a more generalised, unconditional and global erasure effect.
   </p>   
   <figure class="center_image" style="margin-top: 30px">
-    <img src="images/paper/ablation.png" style="width:100%">
+    <img src="images/paper/ablation.png" style="width:100%; max-width:800px">
     <figcaption> ESD-x (last column) erases in a narrow, finer scope while keeping the interference (last 3 rows) to minimal. Where as ESD-u (third column) erases in a global fashion.
     </figcaption>
   </figure>
@@ -166,7 +166,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
         sensitive erasure where specific art styles need to be erased while keeping the interference to minimal, we propose ESD-x for this application
       </p>
       <figure class="center_image" style="margin-top: 30px">
-        <img src="images/paper/artstyle.png" style="width:100%">
+        <img src="images/paper/artstyle.png" style="width:100%; max-width:800px">
         <figcaption> Our method erases a style more prominently while keeping the undesired interference to a minimal. 
           The blue dotted images represent the intended erasure while the off-diagonal images represent undesired interference. 
         </figcaption>
@@ -176,7 +176,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
     <p> Since nudity content can be generated without explicitly mentioning the word <i>"nudity"</i>, we propose using ESD-u. Compared the inference 
       techniques, our method has a much aggresive erasure effect on a dataset that explicitly creates innapropriate content. </p>
     <figure class="center_image" style="margin-top: 30px">
-      <img src="images/paper/nudity.png" style="width:100%">
+      <img src="images/paper/nudity.png" style="width:100%; max-width:800px">
       <figcaption> Our method erases nudity across all the categories more significantly compared to inference techniques (SLD)
         and models like Stable diffusion V2.0 that is trained on NSFW filtered datasets.
       </figcaption>
@@ -192,7 +192,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
         concept, but when erasing large concepts such as entire object classes or some particular styles,
         our method can impose a trade-off between complete erasure of a visual concept and interference with other visual concepts. </p>     
       <figure class="center_image" style="margin-top: 30px">
-        <img src="images/paper/limitations.png" style="width:100%">
+        <img src="images/paper/limitations.png" style="width:100%; max-width:800px">
         <figcaption> Cases of incomplete concept erasures and style interference with our method.
         </figcaption>
       </figure>
