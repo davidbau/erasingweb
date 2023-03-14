@@ -116,8 +116,8 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
   <p> Large scale image generation models like stable-diffusion have the capability to generate hyper realistic content. Since they mimic the knowledge
     of the training dataset, they are also capable of generating nudity, mimic particular artistic styles, generate undesired objects. This could be of a
     concern to institutions hosting the APIs or releasing their models for research. 
-    <p class="citation"><a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"><img src="images/art_washington.jpeg" alt="washingtonpost-2023">Michael Cavna, "Artists are alarmed by AI — and they’re fighting back", Washington Post, Feb 14 2023 </a><br>
-    <p class="citation"><a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"><img src="images/getty_verge.jpeg" alt="verge-2023">James Vincent, "Getty Images sues AI art generator Stable Diffusion in the US for copyright infringement", The Verge, Feb 06 2023 </a><br>
+    <p class="citation"><a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"><img src="images/articles/art_washington.jpeg" alt="washingtonpost-2023">Michael Cavna, "Artists are alarmed by AI - and they're fighting back", Washington Post, Feb 14 2023 </a><br>
+    <p class="citation"><a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"><img src="images/articles/getty_verge.jpeg" alt="verge-2023">James Vincent, "Getty Images sues AI art generator Stable Diffusion in the US for copyright infringement", The Verge, Feb 06 2023 </a><br>
     
     There are methods to mitigate such content post production or during inference, but are easy to bipass. We propose finetuning the weights for a small 
       number of iterations using simply the text description of such concepts and erase them permanently from the weights. 
@@ -146,7 +146,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
   </p>
   <figure class="center_image" style="margin-top: 30px">
     <img src="images/paper/attentions.png" style="width:100%">
-    <figcaption> Cross attentions activate only when <b><i>"car"<\i><\b> is present in the prompt. But self attentions are activate in both the cases.
+    <figcaption> Cross attentions activate only when <b><i>"car"</i></b> is present in the prompt. But self attentions are activate in both the cases.
     </figcaption>
   </figure>
     
@@ -160,8 +160,18 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
     <figcaption> ESD-x (last column) erases in a narrow, finer scope while keeping the interference (last 3 rows) to minimal. Where as ESD-u (third column) erases in a global fashion.
     </figcaption>
   </figure>
- 
-<h2>Applications</h2>
+  
+ <h3> Artist Style Erasure </h3>
+      <p> With the concern arising from recent lawsuits, artistic style erasure can be of interest for many artists and organizations. Since this is a more
+        sensitive erasure where specific art styles need to be erased while keeping the interference to minimal, we propose ESD-x for this application
+      </p>
+      <figure class="center_image" style="margin-top: 30px">
+        <img src="images/paper/artstyle.png" style="width:100%">
+        <figcaption> Our method erases a style more prominently while keeping the undesired interference to a minimal. 
+          The blue dotted images represent the intended erasure while the off-diagonal images represent undesired interference. 
+        </figcaption>
+      </figure>
+  
   <h3> Nudity Erasure </h3>
     <p> Since nudity content can be generated without explicitly mentioning the word <i>"nudity"</i>, we propose using ESD-u. Compared the inference 
       techniques, our method has a much aggresive erasure effect on a dataset that explicitly creates innapropriate content. </p>
@@ -172,16 +182,7 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
       </figcaption>
     </figure>
       
-  <h3> Artist Style Erasure </h3>
-      <p> With the concern arising from recent lawsuits, artistic style erasure can be of interest for many artists and organizations. Since this is a more
-        sensitive erasure where specific art styles need to be erased while keeping the interference to minimal, we propose ESD-x for this application
-      </p>
-      <figure class="center_image" style="margin-top: 30px">
-        <img src="images/paper/artstyle.png" style="width:100%">
-        <figcaption> Our method erases a style more prominently while keeping the undesired interference to a minimal. 
-          The blue dotted images represent the intended erasure while the off-diagonal images represent undesired interference. 
-        </figcaption>
-      </figure>
+  
   <h3> Object Erasure </h3>
       <p> Erasing undesired objects can also be done using ESD-u, since the effect requires to be global and not text specific </p>
 
