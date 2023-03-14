@@ -88,15 +88,21 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="card-block">
 <h3>How to erase concepts from diffusion model weights?</h3>
 <p>
-<p>With the recent advancements in image generation quality, there is a growing concern for safety, privacy and copyrighted content 
-  in diffusion model generated images. From inappropriate content generation to artistic style mimicing, recent works attempt to restrict such content
-  via inference methods or post generation classification restriction. Such methods can be easily circumvented when users have access to open source weights.
+<p>With recent advancements in image generation quality, there is a growing
+concern around safety, privacy and copyrighted content in diffusion-model-generated
+images. Recent works attempt to restrict undesired content via inference methods or
+post-generation classification, but such methods can be easily circumvented when users
+have access to open-source weights.
 </p>
 <p>
-In this paper, we propose a model weights fine-tuning to <b>erase concepts from diffusion models using their own knowledge</b>. Given just the text of the concept
-  to be erased, our method can edit the model weights to erase the concept while keeping the inteference with other concepts minimal. This type of fine-tuning
-  has an advantage over inference methods where it is difficult to circumvent even with open-sourced weights while avoiding the expense of retraining the data 
-  on filtered training dataset.
+In this paper, we propose a method for fine-tuning model weights to
+<b>erase concepts from diffusion models using their own knowledge</b>.
+Given just the text of the concept to be erased, our method can edit
+the model weights to erase the concept while minimizing the inteference
+with other concepts. This type of fine-tuning has an advantage over
+previous methods: by modifying weights, it is not easy to circumvent,
+but as a fast fine-tuning method, it avoids the expense of retraining
+the entire model on a filtered training data set.
 </p>
 </div><!--card-block-->
 </div><!--card-->
@@ -113,10 +119,10 @@ In this paper, we propose a model weights fine-tuning to <b>erase concepts from 
 </figure>
 
   <h2> Why erase concepts from diffusion model? </h2>
-  <p> Large scale image generation models like Stable Diffusion have the capability to generate
-  realistic content. Since they mimic their vast training data sets, it is not surprising that
+  <p>Since large-scale models such as Stable Diffusion are trained
+  to mimic vast training data sets, it is not surprising that
   they are capable of generating nudity, imitating particular artistic styles, or generating
-  other undesired objects.  These capabilities have led to an array of risks and economic
+  undesired objects.  These capabilities have led to an array of risks and economic
   impacts: use of the models to create
   <a href="https://www.washingtonpost.com/technology/2023/02/13/ai-porn-deepfakes-women-consent/"
     >deepfake porn raises issues of consent and harrassment</a>;
