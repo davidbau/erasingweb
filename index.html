@@ -149,7 +149,21 @@ the whole model on filtered training data.
   Instead of collecting a new dataset of images corresponding to the concept
   that one intends to erase, we propose using the generative capabilities of the
   pre-trained model. </p>
-  
+  <p>The idea is simple but powerful: the pretrained model
+  <font size="+1" style="font-family:serif"><em>P</em><sub><em>&theta;</em>*</sub>(<em>x</em>)</font>
+  already has the ability to model conditional probabilities for any named concept
+  <font size="+1" style="font-family:serif"><em>c</em></font>,
+  so our goal is to produce a new model
+  <font size="+1" style="font-family:serif"><em>P</em><sub><em>&theta;</em></sub>(<em>x</em>)</font>
+  that reshapes its
+  distribution by reducing the probability of any image in the conditional distribution,
+  according to the original pretrained model:</p>
+  <center><img src="images/paper/equation_4.png" style="width:180px;padding-bottom:10px;"></center>
+  <p>This idea is similar to the motivation behind <a
+  href="https://proceedings.neurips.cc/paper/2020/file/49856ed476ad01fcff881d57e161d73f-Paper.pdf"
+  >compositional energy-based models</a>, and working through the math leads to a
+  straightforward fine-tuning scheme:
+  </p>
   <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/paper/esd.png" style="width:100%; max-width:800px"></center>
     <figcaption>Our Erased Stable Diffusion (ESD) method fine tunes a model using the
@@ -160,7 +174,8 @@ the whole model on filtered training data.
   
   We query the frozen pre-trained model to predict the noise for a given prompt,
   then we train the edited model to guide it in the opposite direction using the
-  ideas of classifier-free guidance at training time rather than inference.
+  ideas of <a href="https://arxiv.org/pdf/2207.12598.pdf"
+  >classifier-free guidance</a> at training time rather than inference.
   We fine-tune the model weights such that the edited model learns to generate
   images away from the concept that is erased. 
   </p>
