@@ -181,8 +181,9 @@ the whole model on filtered training data.
   then we train the edited model to guide it in the opposite direction using the
   ideas of <a href="https://arxiv.org/pdf/2207.12598.pdf"
   >classifier-free guidance</a> at training time rather than inference.
-  Fine-tuning model weights with this objective produces an edited model that
-  generates images that are pushed away from the concept that we wish to erase.
+  We find that fine-tuning model weights with this objective is very effective,
+  producing an edited image generator that directly avoids that concept that
+  we have erased.
   </p>
   
 <h2> What weights to edit? </h2>
