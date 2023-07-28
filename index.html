@@ -75,6 +75,10 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <nobr><sup>*</sup>Equal contribution</nobr>
 
 </address>
+<center>
+  International Conference on Computer Vision
+  <a href="https://iccv2023.thecvf.com/">(ICCV 2023)</a>
+</center>
  </div>
 </div><!-- end nd-pageheader -->
 
@@ -162,7 +166,8 @@ the whole model on filtered training data.
   <p>This is similar to the motivation behind <a
   href="https://proceedings.neurips.cc/paper/2020/file/49856ed476ad01fcff881d57e161d73f-Paper.pdf"
   >compositional energy-based models</a>.  In diffusion it leads to a
-  straightforward fine-tuning scheme:
+  straightforward fine-tuning scheme that modifies the noise prediction model by
+  subtracting a component conditioned on the concept to erase:
   </p>
   <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/paper/esd.png" style="width:100%; max-width:800px"></center>
@@ -172,12 +177,12 @@ the whole model on filtered training data.
     </figcaption>
   </figure>
   
-  We query the frozen pre-trained model to predict the noise for a given prompt,
+  We query the frozen pre-trained model to predict the noise for the given erasure prompt,
   then we train the edited model to guide it in the opposite direction using the
   ideas of <a href="https://arxiv.org/pdf/2207.12598.pdf"
   >classifier-free guidance</a> at training time rather than inference.
-  We fine-tune the model weights such that the edited model learns to generate
-  images away from the concept that is erased. 
+  Fine-tuning model weights with this objective produces an edited model that
+  generates images that are pushed away from the concept that we wish to erase.
   </p>
   
 <h2> What weights to edit? </h2>
@@ -345,16 +350,25 @@ Nupur Kumari, Bingliang Zhang, Sheng-Yu Wang, Eli Shechtman, Richard Zhang, Jun-
 <h3 class="card-header">bibliography</h3>
 <div class="card-block">
 <p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
-Rohit Gandikota, Joanna Materzy&#324;ska, Jaden Fiotto-Kaufman, David Bau. "<em>Erasing Concepts from Diffusion Models.</em>" arXiv preprint <nobr><a href="https://arxiv.org/abs/2303.07345">arXiv:2303.07345</a> (2023).</nobr>
+Rohit Gandikota, Joanna Materzy&#324;ska, Jaden Fiotto-Kaufman, David Bau. "<em>Erasing Concepts from Diffusion Models.</em>" Proceedings of the 2023 IEEE International Conference on Computer Vision (ICCV 2023).
+<!--arXiv preprint <nobr><a href="https://arxiv.org/abs/2303.07345">arXiv:2303.07345</a> (2023).</nobr>-->
 </p>
 </div>
 <h3 class="card-header">bibtex</h3>
 <div class="card-block">
 <pre class="card-text clickselect">
+<!--
 @article{gandikota2023erasing,
   title={Erasing Concepts from Diffusion Models},
   author={Rohit Gandikota and Joanna Materzy\'nska and Jaden Fiotto-Kaufman and David Bau},
   journal={arXiv preprint arXiv:2303.07345},
+  year={2023}
+}
+-->
+@inproceedings{gandikota2023erasing,
+  title={Erasing Concepts from Diffusion Models},
+  author={Rohit Gandikota and Joanna Materzy\'nska and Jaden Fiotto-Kaufman and David Bau},
+  booktitle={Proceedings of the 2023 IEEE International Conference on Computer Vision},
   year={2023}
 }
 </pre>
